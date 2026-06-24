@@ -1,0 +1,84 @@
+.container {
+  padding: 2.5rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #1f2937;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* 3. KARTU PRODUK & ANIMASI */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.productCard {
+  border: 1px solid #f3f4f6;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0; 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Hover effect (kecuali saat loading pulse) */
+  &:not(:global(.animate-pulse)):hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+  }
+}
+
+.productCard:nth-child(1) { animation-delay: 0.1s; }
+.productCard:nth-child(2) { animation-delay: 0.2s; }
+.productCard:nth-child(3) { animation-delay: 0.3s; }
+.productCard:nth-child(4) { animation-delay: 0.4s; }
+.productCard:nth-child(5) { animation-delay: 0.5s; }
+.productCard:nth-child(6) { animation-delay: 0.6s; }
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 16rem; /* Kunci tinggi gambar */
+  background-color: #e5e7eb;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Agar gambar tidak peyang */
+    transition: transform 0.7s ease; 
+  }
+}
+
+/* Efek Zoom in saat di-hover */
+.productCard:not(:global(.animate-pulse)):hover .imageWrapper img {
+  transform: scale(1.1);
+}

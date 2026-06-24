@@ -1,18 +1,33 @@
-import Link from 'next/link'
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import TampilanProduk from "@/views/produk"; // Sesuaikan path alias
+import useSWR from "swr";
+import { fetcher } from "@/utils/swr/fetcher"; // Sesuaikan path alias
 
-const Produk = () => {
-    return (
-        <div>
-            Produk User Page
+const ProductPage = () => {
+  // 1. State untuk simulasi status login
+  const [isLogin, setIsLogin] = useState(true);
+  const { push } = useRouter();
 
-            {/* Navigasi ke Halaman Lain (Contoh: Password) */}
-            <nav style={{ marginTop: '20px' }}>
-                <Link href="/produk/sepatu" style={{ color: 'blue', textDecoration: 'underline' }}>
-                    Ke Halaman Produk Sepatu
-                </Link>
-            </nav>
-        </div>
-    );
+  // 2. Client-side Protection (Middleware sederhana di level komponen)
+  useEffect(() => {
+    if (!isLogin) {
+      // Jika tidak login, tendang user ke halaman login
+      push("/auth/login");
+    }
+  }, [isLogin, push]);
+
+  // 3. Mengambil data menggunakan SWR
+  const { data, error, isLoading } = useSWR("/api/produk", fetcher);
+
+  // Jika sedang loading atau tidak login, jangan tampilkan apa-apa dulu (Blank/Loading)
+  if (!isLogin) return null;
+
+  return (
+    <div>
+      <TampilanProduk products={isLoading ? [] : data?.data || []} />
+    </div>
+  );
 };
 
-export default Produk;
+export default ProductPage;
