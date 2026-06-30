@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ProductCard Component renders correctly 1`] = `
+<div>
+  <div
+    class="flex justify-center items-center p-6"
+  >
+    <div
+      class="bg-white shadow-lg rounded-xl p-8 max-w-sm border border-gray-200"
+    >
+      <h2
+        class="text-2xl font-bold text-blue-600 mb-2"
+      >
+        Card
+      </h2>
+      <p
+        class="text-gray-600"
+      >
+        Ini Produk Kami.
+      </p>
+      <button
+        class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+      >
+        Klik Detail
+      </button>
+    </div>
+  </div>
+</div>
+`;

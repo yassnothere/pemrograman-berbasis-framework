@@ -1,11 +1,17 @@
 import styles from "@/styles/404.module.scss";
 import Link from 'next/link';
+import Image from "next/image";
 
 const Custom404 = () => {
   return (
     <div className={`${styles.error} bg-gray-50 px-4`}>
-        <img src="/page-not-found.png" alt="404" className={styles.error_image} />
-      
+        <Image 
+          src="/page-not-found.png" 
+          alt="404" 
+          width={400} 
+          height={200} 
+          className={styles.error_image} 
+        />
       <h1 className="text-9xl font-extrabold text-blue-600 tracking-widest animate-bounce">
         404
       </h1>

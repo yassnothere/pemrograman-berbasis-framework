@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import { signIn, signOut, useSession } from "next-auth/react";
 import styles from "@/styles/navbar.module.scss"; 
 
@@ -8,6 +9,11 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
+      <div className={styles.navbar_brand} id="title"></div>
+      <Script id="title-script" strategy="lazyOnload">
+        {`document.getElementById('title').innerHTML = 'MyApp';`}
+      </Script>
+
       <div className={styles.navMenu}>
         <Link href="/">Home</Link>
         <Link href="/produk">Produk</Link>

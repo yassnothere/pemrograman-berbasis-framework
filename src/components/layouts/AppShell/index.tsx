@@ -1,6 +1,12 @@
 // src/components/layouts/AppShell.tsx
 import Navbar from '@/components/layouts/Navbar';
 import { useRouter } from 'next/router';
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -13,7 +19,7 @@ const AppShell = (props: AppShellProps) => {
   const disableNavbar = ["/auth/login", "/auth/register", "/404"];
 
   return (
-    <main>
+    <main className={roboto.className}>
       {!disableNavbar.includes(pathname) && <Navbar />}
       
       <div className="content">{children}</div>

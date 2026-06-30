@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Navbar Component renders correctly 1`] = `
+<div>
+  <nav
+    class="navbar"
+  >
+    <div
+      class="navbar_brand"
+      id="title"
+    />
+    <div
+      class="navMenu"
+    >
+      <a
+        href="/"
+      >
+        Home
+      </a>
+      <a
+        href="/produk"
+      >
+        Produk
+      </a>
+    </div>
+    <div
+      class="profile"
+    >
+      <button
+        class="btn"
+      >
+        Sign In
+      </button>
+    </div>
+  </nav>
+</div>
+`;

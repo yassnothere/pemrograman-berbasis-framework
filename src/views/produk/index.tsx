@@ -3,6 +3,7 @@ import { fetcher } from '@/utils/swr/fetcher';
 import { ProductType } from '@/types/Product.type';
 import styles from '@/styles/produk.module.scss';
 import Link from 'next/link'; 
+import Image from 'next/image';
 
 const SkeletonProduk = () => (
   <div className={`${styles.productCard} animate-pulse bg-white`}>
@@ -28,7 +29,7 @@ export default function TampilanProduk({ products: serverProducts }: ViewProps) 
 
   return (
     <div className="bg-gray-50 min-h-screen pb-10">
-      <h1 className="text-3xl font-bold text-center py-8 text-gray-800">
+      <h1 data-testid="title" className="text-3xl font-bold text-center py-8 text-gray-800">
         Halaman Produk {serverProducts ? "" : ""}
       </h1>
       
@@ -49,12 +50,12 @@ export default function TampilanProduk({ products: serverProducts }: ViewProps) 
       <div className={`px-10 ${styles.productGrid}`}>
         {isLoading && !serverProducts ? (
           [1, 2, 3].map((item) => <SkeletonProduk key={`skeleton-${item}`} />)
-        ) : finalProducts.length > 0 ? (
-          finalProducts.map((item) => (
+        ) : finalProducts?.length > 0 ? (
+          finalProducts?.map((item) => (
             // PERUBAHAN PENTING: Bungkus card dengan <Link>
             <Link href={`/produk/${item.id}`} key={item.id} className={styles.productCard}>
               <div className={styles.imageWrapper}>
-                <img src={item.image} alt={item.name} />
+                <Image src={item.image} alt={item.name} width={500} height={500} />
                 <span className="absolute top-4 right-4 bg-white/90 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                   {item.category || "Umum"}
                 </span>
